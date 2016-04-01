@@ -1,0 +1,19 @@
+{
+  "name": "microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "orders.js",
+  "dependencies": {
+    "co": "^4.6.0",
+    "lowdb": "^0.12.5",
+    "soap": "^0.13.0",
+    "xmlbuilder": "^8.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node orders",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

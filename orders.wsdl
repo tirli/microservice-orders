@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost:3000/orders" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://localhost:3000/orders" name="microservice.orders.OrdersController" targetNamespace="http://localhost:3000/orders">
+	<wsdl:types>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost:3000/orders">
+			<xs:complexType name="order">
+				<xs:sequence>
+					<xs:element name="products">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="product">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element type="xs:byte" name="id"/>
+											<xs:element type="xs:string" name="product"/>
+											<xs:element type="xs:string" name="status"/>
+											<xs:element name="storage">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element type="xs:byte" name="id"/>
+														<xs:element type="xs:string" name="address"/>
+														<xs:element type="xs:string" name="description"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="user">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element type="xs:byte" name="id"/>
+								<xs:element type="xs:string" name="firstName"/>
+								<xs:element type="xs:string" name="lastName"/>
+								<xs:element type="xs:string" name="email"/>
+								<xs:element type="xs:float" name="phone"/>
+								<xs:element type="xs:string" name="address"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element type="xs:string" name="preferredAddress"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="simpleOrder">
+				<xs:sequence>
+					<xs:element name="products">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element type="xs:byte" name="id" maxOccurs="unbounded" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element type="xs:byte" name="userId"/>
+					<xs:element type="xs:string" name="preferredAddress"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ordersList">
+				<xs:complexContent mixed="false">
+					<xs:restriction base="soap-enc:Array">
+						<xs:attribute wsdl:arrayType="ns:order[]" ref="soap-enc:arrayType"/>
+					</xs:restriction>
+				</xs:complexContent>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<message name="placeOrderIn">
+		<part name="order" type="tns:simpleOrder"/>
+	</message>
+	<message name="changeOrderIn">
+		<part name="order" type="tns:simpleOrder"/>
+	</message>
+	<message name="changeOrderOut">
+		<part name="order" type="tns:order"/>
+	</message>
+	<message name="deleteOrderIn">
+		<part name="id" type="xsd:int"/>
+	</message>
+	<message name="getOrderByIdIn">
+		<part name="id" type="xsd:int"/>
+	</message>
+	<message name="getOrderByIdOut">
+		<part name="order" type="ns:order"/>
+	</message>
+	<message name="getOrderdByUserIdIn">
+		<part name="id" type="xsd:int"/>
+	</message>
+	<message name="getOrderdByUserIdOut">
+		<part name="orders" type="ns:ordersList"/>
+	</message>
+	<message name="placeOrderOut">
+		<part name="order" type="tns:order"/>
+	</message>
+	<portType name="microservice.orders.OrdersControllerPort">
+		<operation name="placeOrder" pattern="http://www.w3.org/ns/wsdl/in-only">
+			<input message="tns:placeOrderIn" element="tns:placeOrderIn"/>
+			<output message="tns:placeOrderOut"/>
+		</operation>
+		<operation name="changeOrder">
+			<input message="tns:changeOrderIn"/>
+			<output message="tns:changeOrderOut"/>
+		</operation>
+		<operation name="getOrderById">
+			<input message="tns:getOrderByIdIn"/>
+			<output message="tns:getOrderByIdOut"/>
+		</operation>
+		<operation name="getOrdersByUserId">
+			<input message="tns:getOrderdByUserIdIn"/>
+			<output message="tns:getOrderdByUserIdOut"/>
+		</operation>
+	</portType>
+	<binding name="microservice.orders.OrdersControllerBinding" type="ns:microservice.orders.OrdersControllerPort">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="placeOrder">
+			<soap:operation soapAction="urn:placeOrder"/>
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</output>
+		</operation>
+		<operation name="changeOrder">
+			<soap:operation soapAction="urn:changeOrder"/>
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</output>
+		</operation>
+		<operation name="getOrderById">
+			<soap:operation soapAction="urn:getOrderById"/>
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</output>
+		</operation>
+		<operation name="getOrdersByUserId">
+			<soap:operation soapAction="urn:getOrdersByUserId"/>
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="microservice.orders.OrdersControllerService">
+		<port name="microservice.orders.OrdersControllerPort" binding="ns:microservice.orders.OrdersControllerBinding">
+			<soap:address location="http://localhost:3000/orders"/>
+		</port>
+	</service>
+</definitions>
