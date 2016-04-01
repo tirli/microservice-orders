@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost:3000/orders" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://localhost:3000/orders" name="microservice.orders.OrdersController" targetNamespace="http://localhost:3000/orders">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://microservice-orders.herokuapp.com/orders" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="https://microservice-orders.herokuapp.com/orders" name="microservice.orders.OrdersController" targetNamespace="https://microservice-orders.herokuapp.com/orders">
 	<wsdl:types>
-		<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost:3000/orders">
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://microservice-orders.herokuapp.com/orders">
 			<xs:complexType name="order">
 				<xs:sequence>
 					<xs:element name="products">
@@ -115,43 +115,43 @@
 		<operation name="placeOrder">
 			<soap:operation soapAction="urn:placeOrder"/>
 			<input>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://microservice-orders.herokuapp.com/orders"/>
 			</input>
 			<output>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://microservice-orders.herokuapp.com/orders"/>
 			</output>
 		</operation>
 		<operation name="changeOrder">
 			<soap:operation soapAction="urn:changeOrder"/>
 			<input>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://microservice-orders.herokuapp.com/orders"/>
 			</input>
 			<output>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://microservice-orders.herokuapp.com/orders"/>
 			</output>
 		</operation>
 		<operation name="getOrderById">
 			<soap:operation soapAction="urn:getOrderById"/>
 			<input>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://microservice-orders.herokuapp.com/orders"/>
 			</input>
 			<output>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://microservice-orders.herokuapp.com/orders"/>
 			</output>
 		</operation>
 		<operation name="getOrdersByUserId">
 			<soap:operation soapAction="urn:getOrdersByUserId"/>
 			<input>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://microservice-orders.herokuapp.com/orders"/>
 			</input>
 			<output>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://microservice-orders.herokuapp.com/orders"/>
 			</output>
 		</operation>
 	</binding>
 	<service name="microservice.orders.OrdersControllerService">
 		<port name="microservice.orders.OrdersControllerPort" binding="ns:microservice.orders.OrdersControllerBinding">
-			<soap:address location="http://localhost:3000/orders"/>
+			<soap:address location="https://microservice-orders.herokuapp.com/orders"/>
 		</port>
 	</service>
 </definitions>
