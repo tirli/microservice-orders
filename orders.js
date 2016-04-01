@@ -68,6 +68,7 @@ co(function* (){
       products: {
         product: productData
       },
+      id: order.id,
       'tns:user': user,
       'tns:preferredAddress': order.preferredAddress
     };
