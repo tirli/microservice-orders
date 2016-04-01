@@ -102,7 +102,9 @@ co(function* (){
             if (!order) {
               throw new SoapError('no such order');
             }
-            return yield getFullInfo(order);
+            return {
+              return: yield getFullInfo(order)
+            }
           }).then(cb, cb)
         },
 
