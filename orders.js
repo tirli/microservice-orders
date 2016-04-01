@@ -38,7 +38,6 @@ const idGenerator = (function* idGenerator() {
 })();
 
 
-
 co(function* (){
   const warehouseService = yield thenify(soap.createClient)('http://andrei.xianet.com.ua/public/storage.php?r=item');
   const userService = yield thenify(soap.createClient)('https://microservice-users.herokuapp.com');
@@ -57,19 +56,13 @@ co(function* (){
     } catch (e) {
       throw new SoapError('Error while processing products');
     }
-    let user;
-    try {
-      user = (yield thenify(userService.getUserById)({ id: userId }))[0];
-    } catch (e) {
-      throw new SoapError('Error retrieving user');
-    }
-
+    
     return {
       products: {
         product: productData
       },
       id: order.id,
-      'tns:user': user,
+      userId,
       'tns:preferredAddress': order.preferredAddress
     };
   }
