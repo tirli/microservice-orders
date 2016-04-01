@@ -93,7 +93,7 @@
 		<part name="order" type="tns:order"/>
 	</message>
 	<portType name="microservice.orders.OrdersControllerPort">
-		<operation name="placeOrder" pattern="http://www.w3.org/ns/wsdl/in-only">
+		<operation name="placeOrder">
 			<input message="tns:placeOrderIn"/>
 			<output message="tns:placeOrderOut"/>
 		</operation>
