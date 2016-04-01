@@ -137,7 +137,7 @@ co(function* (){
             });
             db.push(order);
             return info;
-          }).then(cb, e => console.log(e));
+          }).then(cb, cb);
         }
       }
     }
