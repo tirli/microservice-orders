@@ -56,14 +56,14 @@ co(function* (){
     } catch (e) {
       throw new SoapError('Error while processing products');
     }
-    
+
     return {
       products: {
         product: productData
       },
       id: order.id,
       userId,
-      'tns:preferredAddress': order.preferredAddress
+      preferredAddress: order.preferredAddress
     };
   }
 
@@ -107,7 +107,7 @@ co(function* (){
             const id = +__(args.id);
             const ordersList = db.filter({ userId: id });
             const orders = [];
-            for (const order of ordersList) {
+            for (var order of ordersList) {
               orders.push(yield getFullInfo(order));
             }
 
@@ -146,7 +146,8 @@ co(function* (){
     response.end(xml);
   });
 
-  server.listen(process.env.PORT || 3000);
+  var port = process.env.PORT || 3000;
+  server.listen(port);
   soap.listen(server, '/orders', service, xml);
-  console.log('launched');
+  console.log('launched at port ' + port);
 }).catch(e => console.log(e));

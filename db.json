@@ -1,0 +1,77 @@
+{
+  "orders": [
+    {
+      "attributes": {
+        "xsi:type": "ord:simpleOrder"
+      },
+      "products": {
+        "id": [
+          1,
+          2
+        ]
+      },
+      "userId": 1,
+      "preferredAddress": {
+        "attributes": {
+          "xsi:type": "xsd:string"
+        },
+        "$value": "ул. Отакара Яроша 18а"
+      },
+      "id": 1
+    },
+    {
+      "attributes": {
+        "xsi:type": "ord:simpleOrder"
+      },
+      "products": {
+        "id": [
+          3
+        ]
+      },
+      "userId": 1,
+      "preferredAddress": {
+        "attributes": {
+          "xsi:type": "xsd:string"
+        },
+        "$value": "ул. Ленина 17"
+      },
+      "id": 2
+    },
+    {
+      "attributes": {
+        "xsi:type": "ord:simpleOrder"
+      },
+      "products": {
+        "id": [
+          1
+        ]
+      },
+      "userId": 2,
+      "preferredAddress": {
+        "attributes": {
+          "xsi:type": "xsd:string"
+        },
+        "$value": "ул. Пушкина 3"
+      },
+      "id": 3
+    },
+    {
+      "attributes": {
+        "xsi:type": "ord:simpleOrder"
+      },
+      "products": {
+        "id": [
+          3
+        ]
+      },
+      "userId": 2,
+      "preferredAddress": {
+        "attributes": {
+          "xsi:type": "xsd:string"
+        },
+        "$value": "ул. Ленина 12"
+      },
+      "id": 4
+    }
+  ]
+}
