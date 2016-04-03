@@ -49,12 +49,12 @@ co(function* (){
     const userId = __(order.userId);
     const productData = [];
     try {
-      for (const id of products) {
+      for (let id of products) {
         const response = yield thenify(warehouseService.getItemById)({ id });
         productData.push(response[0].return);
       };
     } catch (e) {
-      throw new SoapError('Error while processing products');
+      throw new SoapError('Error while processing products: ' + e);
     }
 
     return {
@@ -136,12 +136,13 @@ co(function* (){
               throw new SoapError('Error while adding ticket');
             }
 
+            const products = __(order.products.id);
             try {
-              for (const id of products) {
+              for (var id of products) {
                 const response = yield thenify(warehouseService.updateItemStatus)({ id, status_id: 2 });
               };
             } catch (e) {
-              throw new SoapError('Error while processing products');
+              throw new SoapError('Error while updating products: ' + e);
             }
 
             const info = yield getFullInfo(order);
