@@ -10,40 +10,31 @@
 								<xs:element name="product">
 									<xs:complexType>
 										<xs:sequence>
-											<xs:element type="xs:byte" name="id"/>
+											<xs:element type="xs:int" name="id"/>
 											<xs:element type="xs:string" name="product"/>
 											<xs:element type="xs:string" name="status"/>
-											<xs:element name="storage">
-												<xs:complexType>
-													<xs:sequence>
-														<xs:element type="xs:byte" name="id"/>
-														<xs:element type="xs:string" name="address"/>
-														<xs:element type="xs:string" name="description"/>
-													</xs:sequence>
-												</xs:complexType>
-											</xs:element>
 										</xs:sequence>
 									</xs:complexType>
 								</xs:element>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
-					<xs:element name="id" type="xs:byte"/>
-					<xs:element type="xs:byte" name="userId"/>
+					<xs:element name="id" type="xs:int"/>
+					<xs:element type="xs:int" name="userId"/>
 					<xs:element type="xs:string" name="preferredAddress"/>
 				</xs:sequence>
 			</xs:complexType>
 			<xs:complexType name="simpleOrder">
 				<xs:sequence>
-					<xs:element name="id" type="xs:byte"/>
+					<xs:element name="id" type="xs:int"/>
 					<xs:element name="products">
 						<xs:complexType>
 							<xs:sequence>
-								<xs:element type="xs:byte" name="id" maxOccurs="unbounded" minOccurs="0"/>
+								<xs:element type="xs:int" name="id" maxOccurs="unbounded" minOccurs="0"/>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
-					<xs:element type="xs:byte" name="userId"/>
+					<xs:element type="xs:int" name="userId"/>
 					<xs:element type="xs:string" name="preferredAddress"/>
 				</xs:sequence>
 			</xs:complexType>
@@ -64,9 +55,6 @@
 	</message>
 	<message name="changeOrderOut">
 		<part name="order" type="tns:order"/>
-	</message>
-	<message name="deleteOrderIn">
-		<part name="id" type="xsd:int"/>
 	</message>
 	<message name="getOrderByIdIn">
 		<part name="id" type="xsd:int"/>
