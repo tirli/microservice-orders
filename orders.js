@@ -125,12 +125,27 @@ co(function* (){
             order.id = idGenerator.next().value;
             order.products.id = toArray(order.products.id).map(x => +__(x));
             order.userId = +__(order.userId);
+
+            try {
+              yield thenify(deliveryService.addTicket)({
+                address: order.preferredAddress,
+                order_id: order.id,
+                description: 'Retrieved from orders service'
+              });
+            } catch (e) {
+              throw new SoapError('Error while adding ticket');
+            }
+
+            try {
+              for (const id of products) {
+                const response = yield thenify(warehouseService.updateItemStatus)({ id, status_id: 2 });
+              };
+            } catch (e) {
+              throw new SoapError('Error while processing products');
+            }
+
             const info = yield getFullInfo(order);
-            yield thenify(deliveryService.addTicket)({
-              address: order.preferredAddress,
-              order_id: order.id,
-              description: 'Retrieved from orders service'
-            });
+
             db.push(order);
             return info;
           }).then(cb, cb);
